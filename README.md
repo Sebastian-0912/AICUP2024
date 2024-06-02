@@ -4,7 +4,7 @@ This repository is a revised version of [BASnet](https://github.com/xuebinqin/BA
 
 ## Introduction
 
-This repository contains the related code used for our 2024 AICUP implementation. We have augmented the dataset significantly (such as horizontal and vertical flipping, and cropping). When training the model, we trained the lane and river models separately, so we have two trained models. Finally, we trained multiple models and used an ensemble method to increase our accuracy.
+This repository contains the related code used for our 2024 AICUP implementation. We have augmented the dataset significantly (such as horizontal and vertical flipping, and cropping). When training the model, we trained the lane and river models separately, so we have two trained models. Finally, we trained multiple models with different hyperparameter and used an ensemble method to increase our accuracy.
 
 ### Instructions for Using This Code
 
@@ -29,8 +29,8 @@ To increase the model accuracy, we first filled the original labels with solid c
 1. **Clone the repository:**
 
     ```sh
-    git clone https://github.com/yourusername/your-repo.git
-    cd your-repo
+    git clone git@github.com:Sebastian-0912/AICUP2024.git
+    cd AICUP2024
     ```
 
 2. **Install the required dependencies:**
@@ -47,9 +47,10 @@ To train and test the model, you need to put our dataset and pre-trained model f
     - [Download the dataset and model pth file from Google Drive](https://drive.google.com/drive/folders/1Mxp4B1yuSctp7qlfUX5wPFpy57u8t_vQ).
 
 2. **Organize the dataset:**
-    Place the dataset in the `dataset/train` directories. The directory structure should look like this:
+    Place the train dataset in the `dataset/train` and the test dataset in the `dataset/test` directories. The directory structure should look like this and `run.py` is used to fill the label to solid, so judges may not need to use that file, because we have supply the solid label.:
+
     ```
-    your-repo/
+    AICUP2024/
     ├── dataset/
     │   ├── train/
     │   │   ├── img/
@@ -64,7 +65,7 @@ To train and test the model, you need to put our dataset and pre-trained model f
     Put the downloaded `.pth` file in the `saved_model` directory and there are about twenty pth files because we use ensemble approach in final step by [ensemble.py](/ensemble.py):
 
     ```
-    your-repo/
+    AICUP2024/
     ├── saved_model/
     │   │── best_model1.pth
     │   │── best_model2.pth
@@ -97,9 +98,9 @@ To train and test the model, you need to put our dataset and pre-trained model f
     python predict.py && python boundary.py
     ```
 
-3. The predicted results are saved in `your_repo/test/`.
+3. The predicted results are saved in `AICUP2024/test/`.
 
-4. Repeat model training with different parameters (steps 1 to 3), save the output photo and , and then use following method to combine multiple trained results into the final answer the final file is `your_repo/test/answer`.
+4. Repeat model training with different parameters (steps 1 to 3), save the output photo and , and then use following method to combine multiple trained results into the final answer the final file is `AICUP2024/test/answer`.
 
     ```sh
     python ensemble.py
@@ -107,7 +108,7 @@ To train and test the model, you need to put our dataset and pre-trained model f
 
 ## Acknowledgements
 
-This project is based on the original work of[BASnet](https://github.com/xuebinqin/BASNet) by Xuebin Qin et al. We would like to thank the authors for their pioneering work and making their code available.
+This project is based on the original work of [BASnet](https://github.com/xuebinqin/BASNet) by Xuebin Qin et al. We would like to thank the authors for their pioneering work and making their code available.
 
 ## Citation
 
